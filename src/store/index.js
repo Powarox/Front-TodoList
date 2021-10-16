@@ -19,17 +19,21 @@ export const store = createStore({
     },
 
     actions: {
-        addTask({commit}, message){
+        addTask({commit}, message) {
             commit('ADDTASK', message);
         },
 
-        delTask({commit}, task){
+        delTask({commit}, task) {
             commit('DELTASK', task);
+        },
+
+        checkTask({commit}, task) {
+            commit('CHECKTASK', task);
         }
     },
 
     mutations: {
-        ADDTASK(state, val){
+        ADDTASK(state, val) {
             if(val !== undefined && val.replace(/\s+/g, '') !== ""){
                 state.todos.push({
                     id: state.todos.lenght,
@@ -39,9 +43,17 @@ export const store = createStore({
             }
         },
 
-        DELTASK(state, key){
-            console.log(key);
+        DELTASK(state, key) {
             state.todos.splice(key, 1);
+        },
+
+        CHECKTASK(state, key) {
+            console.log(key);
+            // if(state.todos[key].completed){
+            //     state.todos[key].completed = false;
+            // } else {
+            //     state.todos[key].completed = true;
+            // }
         }
     }
 });

@@ -1,5 +1,5 @@
 <template>
-    <div class="elem" v-for="(todo, delkey) in filterTodos" v-bind:key="todo.id">
+    <div class="elem" v-on:click="check_todo(delkey)" v-for="(todo, delkey) in filterTodos" v-bind:key="todo.id">
         <input type="checkbox" v-model="todo.completed">
         <div class="content" :class="{ completed: todo.completed }">
             <label>{{ todo.name }}</label>
@@ -32,7 +32,7 @@
         },
         methods: {
             ...mapActions([
-                'addTask', 'delTask'
+                'addTask', 'delTask', 'checkTask'
             ]),
 
             add_todo(){
@@ -42,6 +42,10 @@
 
             del_todo(delkey){
                 this.delTask(delkey);
+            },
+
+            check_todo(key){
+                this.checkTask(key);
             }
         },
         computed: {
